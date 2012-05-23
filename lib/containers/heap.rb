@@ -200,7 +200,7 @@ class Containers::Heap
     popped = @next
     if @size == 1
       clear
-      return popped.value
+      return popped
     end
     # Merge the popped's children into root node
     if @next.child
@@ -252,7 +252,8 @@ class Containers::Heap
   #     minheap.pop #=> 1
   #     minheap.size #=> 1  
   def pop
-    pop_entry.value
+    p = pop_entry
+    p && p.value
   end
   alias_method :next!, :pop
   
