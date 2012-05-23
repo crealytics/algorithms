@@ -185,17 +185,17 @@ class Containers::Heap
   end
   
   # call-seq:
-  #     pop -> value
+  #     pop -> [key,value]
   #     pop -> nil
   #
-  # Returns the value of the next item in heap order and removes it from the heap.
+  # Returns both the key and the value of the next item in heap order and removes it from the heap.
   #
   # Complexity: O(1)
   #
   #     minheap = MinHeap.new([1, 2])
-  #     minheap.pop #=> 1
+  #     minheap.pop #=> [1,1]
   #     minheap.size #=> 1
-  def pop
+  def pop_entry
     return nil unless @next
     popped = @next
     if @size == 1
@@ -237,7 +237,22 @@ class Containers::Heap
     end
     @size -= 1
     
-    popped.value
+    popped
+  end
+
+  # call-seq:
+  #     pop -> value
+  #     pop -> nil
+  #
+  # Returns the value of the next item in heap order and removes it from the heap.
+  #
+  # Complexity: O(1)
+  #
+  #     minheap = MinHeap.new([1, 2])
+  #     minheap.pop #=> 1
+  #     minheap.size #=> 1  
+  def pop
+    pop_entry.value
   end
   alias_method :next!, :pop
   
